@@ -2,7 +2,7 @@
 	import Hero from './hero/Hero.svelte';
 </script>
 
-<div class="from-primary-500/50 to-primary-900/50 bg-gradient-to-br">
+<div class="from-primary-500/50 to-primary-900/50 h-full bg-gradient-to-br">
 	<Hero />
 
 	<div class="mx-auto w-fit p-20">

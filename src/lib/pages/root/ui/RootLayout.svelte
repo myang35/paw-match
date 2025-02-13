@@ -7,12 +7,12 @@
 	let { children }: { children: Snippet } = $props();
 </script>
 
-<div>
+<div class="flex h-screen flex-col">
 	<navbar>
 		<Navbar />
 	</navbar>
 
-	<main>
+	<main class="h-full">
 		{@render children()}
 	</main>
 
