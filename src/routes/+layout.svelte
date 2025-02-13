@@ -1,6 +1,6 @@
 <script lang="ts">
-	import '../app.css';
+	import { RootLayout } from '$lib/pages/root';
 	let { children } = $props();
 </script>
 
-{@render children()}
+<RootLayout {children} />
