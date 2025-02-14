@@ -3,9 +3,8 @@
 	import '$lib/app/styles/app.css';
 	import logo from '$lib/assets/images/logo.png';
 	import { Anchor } from '$lib/ui';
-	import type { Snippet } from 'svelte';
 
-	let { children }: { children: Snippet } = $props();
+	let { children } = $props();
 </script>
 
 <div class="flex h-screen flex-col">
