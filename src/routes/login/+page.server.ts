@@ -14,7 +14,7 @@ export const actions = {
 		}
 
 		try {
-			await apiClient.auth.login(name, email);
+			await apiClient.auth.login({ name, email });
 		} catch (e) {
 			if (e instanceof Error) {
 				return fail(500, { name, email, errorMessage: `Internal Server Error: ${e.message}` });
