@@ -14,7 +14,7 @@
 			Find your new best friend among our adorable shelter dogs waiting for a loving home
 		</p>
 		<Anchor
-			href="{base}/login"
+			href="{base}/login?redirectTo=search"
 			color="primary"
 			class="w-fit rounded-2xl border-2 px-8 py-2 text-lg font-bold">Let's Go!</Anchor
 		>
