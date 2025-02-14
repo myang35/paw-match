@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { LandingPage } from '$lib/pages/landing';
+	import { RootPage } from '$lib/pages/root';
 </script>
 
-<LandingPage />
+<RootPage />
