@@ -3,6 +3,7 @@ export async function fetchWrapper(url: string, options: RequestInit = {}) {
 		headers: {
 			'Content-Type': 'application/json'
 		},
+		credentials: 'include',
 		...options
 	});
 	if (!response.ok) {

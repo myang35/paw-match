@@ -13,10 +13,8 @@
 			<h1 class="text-3xl font-bold">PawMatch</h1>
 			<img src={logo} alt="Logo" class="size-6" />
 		</a>
-		<Anchor
-			href="{base}/login?redirectTo=search"
-			color="light"
-			class="h-fit rounded-full px-4 font-bold">Adopt a Dog</Anchor
+		<Anchor href="{base}/login" color="light" class="h-fit rounded-full px-4 font-bold"
+			>Adopt a Dog</Anchor
 		>
 	</navbar>
 
@@ -26,8 +24,7 @@
 
 	<footer class="bg-dark-500 flex justify-center gap-8 px-8 py-3">
 		<Anchor href="{base}/" class="text-light-500 rounded-full px-4 font-bold">Home</Anchor>
-		<Anchor href="{base}/login?redirectTo=search" color="dark" class="rounded-full px-4 font-bold"
-			>Adopt a Dog</Anchor
+		<Anchor href="{base}/login" color="dark" class="rounded-full px-4 font-bold">Adopt a Dog</Anchor
 		>
 	</footer>
 </div>
