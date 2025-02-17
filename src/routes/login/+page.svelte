@@ -3,6 +3,7 @@
 	import { base } from '$app/paths';
 	import { apiClient } from '$lib/api';
 	import { Button } from '$lib/ui';
+	import { getErrorMessage } from '$lib/utils';
 
 	let formErrorMessage = '';
 	let fieldErrorMessages = {
@@ -38,18 +39,12 @@
 			});
 			goto(`${base}/search`);
 		} catch (error) {
-			if (error instanceof Error) {
-				formErrorMessage = error.message;
-			} else if (typeof error === 'string') {
-				formErrorMessage = error;
-			} else {
-				formErrorMessage = 'Server Error';
-			}
+			formErrorMessage = getErrorMessage(error);
 		}
 	}
 </script>
 
-<div class="from-primary-500/50 to-primary-900/50 h-full bg-gradient-to-br p-20">
+<div class="p-20">
 	<div
 		class="bg-light-500 mx-auto flex max-w-lg flex-col gap-4 rounded-xl p-8 shadow-lg shadow-black/20"
 	>

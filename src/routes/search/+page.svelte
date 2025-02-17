@@ -1,7 +1,9 @@
 <script lang="ts">
-	import type { PageData } from './$types';
-
-	let { data }: { data: PageData } = $props();
+	import ControlSection from './_ui/control-section/ControlSection.svelte';
+	import ListSection from './_ui/list-section/ListSection.svelte';
 </script>
 
-<h1>Search Page</h1>
+<div>
+	<ControlSection />
+	<ListSection />
+</div>

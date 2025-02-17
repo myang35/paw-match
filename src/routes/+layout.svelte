@@ -7,7 +7,7 @@
 	let { children } = $props();
 </script>
 
-<div class="flex h-screen flex-col">
+<div class="flex min-h-screen flex-col">
 	<navbar class="bg-light-500 flex items-center justify-between px-8 py-1">
 		<a href="{base}/" class="flex items-center gap-2">
 			<h1 class="text-3xl font-bold">PawMatch</h1>
@@ -18,7 +18,7 @@
 		>
 	</navbar>
 
-	<main class="h-full">
+	<main class="from-primary-500/50 to-primary-900/50 h-full flex-1 bg-gradient-to-br">
 		{@render children()}
 	</main>
 

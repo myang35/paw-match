@@ -3,7 +3,7 @@
 	import { Anchor } from '$lib/ui';
 </script>
 
-<div class="from-primary-500/50 to-primary-900/50 h-full bg-gradient-to-br">
+<div>
 	<section
 		class="flex w-full flex-col items-center gap-20 bg-[url('$lib/assets/images/hero-background.jpg')] bg-cover bg-center bg-no-repeat p-20"
 	>
