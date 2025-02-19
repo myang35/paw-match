@@ -15,6 +15,8 @@
 	let desc = $state(sortOptions?.desc ?? false);
 
 	function handleSubmit(e: SubmitEvent) {
+		e.preventDefault();
+
 		onSubmit?.({
 			prop,
 			desc

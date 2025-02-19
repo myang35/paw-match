@@ -14,15 +14,18 @@
 	let selectedBreedsList = $state([...(filterOptions?.breeds ?? [])]);
 	let minAge = $state(filterOptions?.age.min);
 	let maxAge = $state(filterOptions?.age.max);
-	const fieldErrorMessages = $state({
-		minAge: '',
-		maxAge: ''
+	let errorMessages = $state({
+		age: ''
 	});
 
 	function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
+		errorMessages.age = '';
 
-		if (Object.values(fieldErrorMessages).some((m) => m)) return;
+		if (minAge && maxAge && minAge > maxAge) {
+			errorMessages.age = 'Invalid age range!';
+			return;
+		}
 
 		onSubmit?.({
 			breeds: selectedBreedsList,
@@ -43,7 +46,7 @@
 		<form onsubmit={handleSubmit} class="w-80 space-y-6">
 			<div class="space-y-4">
 				<BreedFieldset bind:selectedBreedsList />
-				<AgeFieldset bind:minAge bind:maxAge />
+				<AgeFieldset errorMessage={errorMessages.age} bind:minAge bind:maxAge />
 			</div>
 
 			<div class="border-secondary-500 rounded-full border-t-4"></div>

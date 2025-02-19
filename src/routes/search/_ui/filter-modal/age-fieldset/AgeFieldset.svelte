@@ -2,9 +2,14 @@
 	type Props = {
 		minAge?: number;
 		maxAge?: number;
+		errorMessage?: string;
 	};
 
-	let { minAge: minAgeProp = $bindable(), maxAge: maxAgeProp = $bindable() }: Props = $props();
+	let {
+		minAge: minAgeProp = $bindable(),
+		maxAge: maxAgeProp = $bindable(),
+		errorMessage
+	}: Props = $props();
 	let minAge = $state<string>(minAgeProp?.toString() ?? '');
 	let maxAge = $state<string>(maxAgeProp?.toString() ?? '');
 	const fieldErrorMessages = $state({
@@ -23,6 +28,7 @@
 
 <fieldset class="border-secondary-900 rounded border p-4">
 	<legend class="text-secondary-900 font-bold">Age:</legend>
+
 	<div class="flex items-center gap-4">
 		<div>
 			<input
@@ -39,7 +45,9 @@
 				</p>
 			{/if}
 		</div>
+
 		<span>-</span>
+
 		<div>
 			<input
 				id="maxAge"
@@ -57,4 +65,8 @@
 		</div>
 		<span>months</span>
 	</div>
+
+	{#if errorMessage}
+		<p class="rounded bg-red-500/25 px-2 py-1 text-red-900">{errorMessage}</p>
+	{/if}
 </fieldset>
