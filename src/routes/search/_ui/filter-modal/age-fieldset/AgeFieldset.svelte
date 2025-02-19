@@ -35,7 +35,7 @@
 				id="minAge"
 				type="number"
 				min="0"
-				class="bg-light-100 border-dark-500 rounded border p-2 disabled:opacity-50"
+				class="bg-light-100 border-dark-500 w-16 rounded border p-2 disabled:opacity-50"
 				bind:value={minAge}
 			/>
 			{#if fieldErrorMessages.minAge}
@@ -52,7 +52,7 @@
 				id="maxAge"
 				type="number"
 				min="0"
-				class="bg-light-100 border-dark-500 rounded border p-2 disabled:opacity-50"
+				class="bg-light-100 border-dark-500 w-16 rounded border p-2 disabled:opacity-50"
 				bind:value={maxAge}
 			/>
 			{#if fieldErrorMessages.maxAge}
