@@ -35,7 +35,6 @@
 				id="minAge"
 				type="number"
 				min="0"
-				max="24"
 				class="bg-light-100 border-dark-500 rounded border p-2 disabled:opacity-50"
 				bind:value={minAge}
 			/>
@@ -53,7 +52,6 @@
 				id="maxAge"
 				type="number"
 				min="0"
-				max="24"
 				class="bg-light-100 border-dark-500 rounded border p-2 disabled:opacity-50"
 				bind:value={maxAge}
 			/>

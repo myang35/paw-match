@@ -21,6 +21,12 @@
 	function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
 		errorMessages.age = '';
+		if (minAge && minAge < 0) {
+			minAge = 0;
+		}
+		if (maxAge && maxAge < 0) {
+			maxAge = 0;
+		}
 
 		if (minAge && maxAge && minAge > maxAge) {
 			errorMessages.age = 'Invalid age range!';
