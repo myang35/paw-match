@@ -17,21 +17,16 @@
 
 	const combobox = createCombobox({
 		forceVisible: true,
-		multiple: true
+		multiple: true,
+		defaultSelected: selectedList,
+		onSelectedChange: ({ next }) => {
+			selectedList = next;
+			return next;
+		}
 	});
 	const {
-		states: { open, selected }
+		states: { open }
 	} = combobox;
-
-	selected.set(selectedList);
-
-	selected.subscribe((value) => {
-		selectedList =
-			value?.map((item) => ({
-				label: item.label ?? '',
-				value: item.value as string
-			})) ?? [];
-	});
 
 	setContext('combobox', combobox);
 </script>

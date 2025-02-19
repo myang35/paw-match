@@ -10,10 +10,10 @@
 		onCancel?: (event: MouseEvent) => void;
 	};
 
-	let { filterOptions, onSubmit, onCancel }: Props = $props();
-	let selectedBreedsList = $state<string[]>(filterOptions?.breeds ?? []);
-	let minAge = $state<number | undefined>(filterOptions?.age.min);
-	let maxAge = $state<number | undefined>(filterOptions?.age.max);
+	let { filterOptions = $bindable(), onSubmit, onCancel }: Props = $props();
+	let selectedBreedsList = $state([...(filterOptions?.breeds ?? [])]);
+	let minAge = $state(filterOptions?.age.min);
+	let maxAge = $state(filterOptions?.age.max);
 	const fieldErrorMessages = $state({
 		minAge: '',
 		maxAge: ''
