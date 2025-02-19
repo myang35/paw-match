@@ -38,12 +38,15 @@
 	<div
 		class="bg-light-500 absolute inset-0 m-auto size-fit max-h-screen overflow-y-auto rounded-lg p-8"
 	>
-		<h1 class="mb-4 text-2xl font-bold">Update Filter</h1>
+		<h1 class="mb-4 text-2xl font-bold">Filter</h1>
 
-		<form onsubmit={handleSubmit} class="flex w-80 flex-col gap-4">
-			<BreedFieldset bind:selectedBreedsList />
+		<form onsubmit={handleSubmit} class="w-80 space-y-6">
+			<div class="space-y-4">
+				<BreedFieldset bind:selectedBreedsList />
+				<AgeFieldset bind:minAge bind:maxAge />
+			</div>
 
-			<AgeFieldset bind:minAge bind:maxAge />
+			<div class="border-secondary-500 rounded-full border-t-4"></div>
 
 			<div class="flex justify-center gap-4">
 				<Button
@@ -52,7 +55,7 @@
 					onclick={onCancel}
 					class="bg-light-600/50 w-full rounded p-2">Cancel</Button
 				>
-				<Button type="submit" color="primary" class="w-full rounded p-2">Update Filter</Button>
+				<Button type="submit" color="primary" class="w-full rounded p-2">Update</Button>
 			</div>
 		</form>
 	</div>

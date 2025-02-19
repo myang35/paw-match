@@ -1,23 +1,18 @@
 <script lang="ts">
 	import { Button } from '$lib/ui';
-	import { faArrowUp, faPen, faX } from '@fortawesome/free-solid-svg-icons';
+	import { faArrowDown, faArrowUp, faPen, faX } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { FilterOptions } from '../../_types/filter-options';
+	import type { SortOptions } from '../../_types/sort-options';
 
 	type Props = {
-		filterOptions?: FilterOptions;
+		filterOptions: FilterOptions;
+		sortOptions: SortOptions;
 		onFilterClick?: (e: MouseEvent) => void;
 		onSortClick?: (e: MouseEvent) => void;
 	};
 
-	let {
-		filterOptions = {
-			breeds: [],
-			age: {}
-		},
-		onFilterClick,
-		onSortClick
-	}: Props = $props();
+	let { filterOptions, sortOptions, onFilterClick, onSortClick }: Props = $props();
 </script>
 
 <section class="bg-secondary-500/50 border-secondary-500 border-b-4 p-4">
@@ -66,9 +61,10 @@
 		</div>
 		<div>
 			<h1 class="font-bold">Sort By:</h1>
-			<Button color="light" onclick={onSortClick} class="rounded px-2 py-1"
-				>Breed <Fa icon={faArrowUp} class="inline" /></Button
-			>
+			<Button color="light" onclick={onSortClick} class="rounded px-2 py-1">
+				<span>{sortOptions.prop}</span>
+				<Fa icon={sortOptions.desc ? faArrowDown : faArrowUp} class="inline" />
+			</Button>
 		</div>
 	</div>
 </section>

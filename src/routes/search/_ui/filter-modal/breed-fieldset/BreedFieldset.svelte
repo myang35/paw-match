@@ -38,7 +38,7 @@
 	});
 </script>
 
-<fieldset class="border-secondary-900 border p-4">
+<fieldset class="border-secondary-900 rounded border p-4">
 	<legend class="text-secondary-900 font-bold">Breed:</legend>
 
 	<Combobox bind:selectedList>
@@ -57,7 +57,7 @@
 	{/if}
 
 	<ul
-		class="border-dark-500 bg-light-200 h-20 max-h-80 resize-y overflow-y-auto rounded-b border p-2"
+		class="border-dark-500 bg-secondary-500/25 h-20 max-h-80 resize-y overflow-y-auto rounded-b border p-2"
 	>
 		{#each selectedList ?? [] as selectedItem}
 			<li class="ml-5 list-disc">{selectedItem.label}</li>

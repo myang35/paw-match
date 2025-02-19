@@ -4,6 +4,8 @@ export { default as Combobox } from './combobox/Combobox.svelte';
 export { default as ComboboxContent } from './combobox/content/ComboboxContent.svelte';
 export { default as ComboboxInput } from './combobox/input/ComboboxInput.svelte';
 export { default as ComboboxOption } from './combobox/option/ComboboxOption.svelte';
+export { default as RadioGroupButton } from './radio-group/button/RadioGroupButton.svelte';
+export { default as RadioGroup } from './radio-group/RadioGroup.svelte';
 export { default as RangeSlider } from './range-slider/RangeSlider.svelte';
 export { default as SelectContent } from './select/content/SelectContent.svelte';
 export { default as SelectOption } from './select/option/SelectOption.svelte';

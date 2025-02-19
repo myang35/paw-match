@@ -21,7 +21,7 @@
 	});
 </script>
 
-<fieldset class="border-secondary-900 border p-4">
+<fieldset class="border-secondary-900 rounded border p-4">
 	<legend class="text-secondary-900 font-bold">Age:</legend>
 	<div class="flex items-center gap-4">
 		<div>
