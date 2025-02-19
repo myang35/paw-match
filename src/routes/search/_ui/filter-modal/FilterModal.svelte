@@ -5,15 +5,15 @@
 	import BreedFieldset from './breed-fieldset/BreedFieldset.svelte';
 
 	type Props = {
-		filter?: FilterOptions;
+		filterOptions?: FilterOptions;
 		onSubmit?: (data: FilterOptions) => void;
 		onCancel?: (event: MouseEvent) => void;
 	};
 
-	let { filter, onSubmit, onCancel }: Props = $props();
-	let selectedBreedsList = $state<string[]>(filter?.breeds ?? []);
-	let minAge = $state<number | undefined>(filter?.age.min);
-	let maxAge = $state<number | undefined>(filter?.age.max);
+	let { filterOptions, onSubmit, onCancel }: Props = $props();
+	let selectedBreedsList = $state<string[]>(filterOptions?.breeds ?? []);
+	let minAge = $state<number | undefined>(filterOptions?.age.min);
+	let maxAge = $state<number | undefined>(filterOptions?.age.max);
 	const fieldErrorMessages = $state({
 		minAge: '',
 		maxAge: ''

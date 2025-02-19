@@ -6,19 +6,23 @@
 
 	let filterModalOpened = $state(false);
 	let sortModalOpened = $state(false);
-	let filter = $state<FilterOptions>();
+	let filterOptions = $state<FilterOptions>();
 </script>
 
 <div>
-	<ControlSection {filter} onFilterClick={() => (filterModalOpened = true)} />
+	<ControlSection
+		{filterOptions}
+		onFilterClick={() => (filterModalOpened = true)}
+		onSortClick={() => (sortModalOpened = true)}
+	/>
 	<ListSection />
 </div>
 
 {#if filterModalOpened}
 	<FilterModal
-		{filter}
+		{filterOptions}
 		onSubmit={(data) => {
-			filter = data;
+			filterOptions = data;
 			filterModalOpened = false;
 		}}
 		onCancel={() => (filterModalOpened = false)}
