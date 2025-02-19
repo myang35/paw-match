@@ -25,7 +25,7 @@
 		onFilterClick={() => (filterModalOpened = true)}
 		onSortClick={() => (sortModalOpened = true)}
 	/>
-	<ListSection />
+	<ListSection {filterOptions} {sortOptions} />
 </div>
 
 {#if filterModalOpened}

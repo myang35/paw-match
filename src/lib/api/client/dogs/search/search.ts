@@ -4,11 +4,11 @@ import { fetchWrapper } from '$lib/api/util/fetch-wrapper';
 export type DogsSearchParams = {
 	breeds?: string[];
 	zipCodes?: string[];
-	ageMin?: number[];
-	ageMax?: number[];
+	ageMin?: number;
+	ageMax?: number;
 	size?: number;
 	from?: number;
-	sort?: 'asc' | 'desc';
+	sort?: string;
 };
 
 export type DogsSearchResponse = {
@@ -22,7 +22,15 @@ export async function search(params: DogsSearchParams): Promise<DogsSearchRespon
 	const searchParams = new URLSearchParams();
 
 	for (const [key, value] of Object.entries(params)) {
-		searchParams.append(key, value.toString());
+		if (value instanceof Array) {
+			for (const item of value) {
+				searchParams.append(key, item);
+			}
+		} else if (typeof value === 'number') {
+			searchParams.append(key, value.toString());
+		} else {
+			searchParams.append(key, value);
+		}
 	}
 
 	const response = await fetchWrapper(

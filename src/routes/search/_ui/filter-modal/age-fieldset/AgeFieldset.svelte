@@ -18,11 +18,13 @@
 	});
 
 	$effect(() => {
-		minAgeProp = Number(minAge);
+		const minAgeNum = Number(minAge);
+		minAgeProp = minAgeNum > 0 ? minAgeNum : undefined;
 	});
 
 	$effect(() => {
-		maxAgeProp = Number(maxAge);
+		const maxAgeNum = Number(maxAge);
+		maxAgeProp = maxAgeNum > 0 ? maxAgeNum : undefined;
 	});
 </script>
 
