@@ -18,6 +18,7 @@
 	class={[
 		'bg-light-100 border-dark-500 flex items-center justify-between gap-2 rounded border px-2 py-1 text-start',
 		disabled && 'opacity-50',
+		!disabled && 'hover:bg-light-300 transition',
 		classProp
 	]}
 	>{@render children?.()}

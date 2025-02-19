@@ -1,5 +1,9 @@
 export { default as Anchor } from './anchor/Anchor.svelte';
 export { default as Button } from './button/Button.svelte';
+export { default as Combobox } from './combobox/Combobox.svelte';
+export { default as ComboboxContent } from './combobox/content/ComboboxContent.svelte';
+export { default as ComboboxInput } from './combobox/input/ComboboxInput.svelte';
+export { default as ComboboxOption } from './combobox/option/ComboboxOption.svelte';
 export { default as RangeSlider } from './range-slider/RangeSlider.svelte';
 export { default as SelectContent } from './select/content/SelectContent.svelte';
 export { default as SelectOption } from './select/option/SelectOption.svelte';
