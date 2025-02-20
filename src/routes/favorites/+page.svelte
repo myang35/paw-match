@@ -3,32 +3,37 @@
 	import { base } from '$app/paths';
 	import { apiClient } from '$lib/api';
 	import type { Dog } from '$lib/api/types/dog';
+	import type { Location } from '$lib/api/types/location';
 	import { DogCard } from '$lib/feats';
 	import { Button } from '$lib/ui';
-	import { getErrorMessage, getFavorites } from '$lib/utils';
+	import { favorites, getErrorMessage, initializeFavorites } from '$lib/utils';
 	import { onMount } from 'svelte';
 
 	let dogs = $state<Dog[]>();
+	let locations = $state<Location[]>();
 	let errorMessage = $state('');
 
 	onMount(() => {
-		const favorites = getFavorites();
-		apiClient.dogs
-			.get({ ids: favorites })
-			.then((res) => {
-				dogs = res.toSorted((a, b) => {
-					if (a.name > b.name) return 1;
-					if (a.name < b.name) return -1;
-					return 0;
-				});
-			})
-			.catch((error) => {
+		initializeFavorites();
+		favorites.subscribe(async (value) => {
+			try {
+				dogs = await (async () => {
+					const response = await apiClient.dogs.get({ ids: value });
+					return response.toSorted((a, b) => {
+						if (a.name > b.name) return 1;
+						if (a.name < b.name) return -1;
+						return 0;
+					});
+				})();
+				locations = await apiClient.locations.get({ zipCodes: dogs.map((dog) => dog.zip_code) });
+			} catch (error) {
 				errorMessage = getErrorMessage(error);
-			});
+			}
+		});
 	});
 
 	async function onMatchClick() {
-		const response = await apiClient.dogs.match({ ids: getFavorites() });
+		const response = await apiClient.dogs.match({ ids: $favorites });
 		const searchParams = new URLSearchParams();
 		searchParams.append('dogId', response.match);
 		goto(`${base}/match?${searchParams.toString()}`);
@@ -38,11 +43,11 @@
 <div class="space-y-20 p-4">
 	<h1 class="text-center text-5xl font-bold">Review Your List</h1>
 
-	{#if dogs}
+	{#if dogs && locations}
 		{#if dogs.length > 0}
 			<div class="mx-auto flex max-w-7xl flex-wrap justify-center gap-6">
-				{#each dogs as dog}
-					<DogCard {dog} />
+				{#each dogs as dog, i}
+					<DogCard {dog} location={locations[i]} />
 				{/each}
 			</div>
 

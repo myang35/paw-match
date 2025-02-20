@@ -4,8 +4,7 @@
 	import type { Location } from '$lib/api/types/location';
 	import { DogCard } from '$lib/feats';
 	import { Pagination } from '$lib/ui';
-	import { getErrorMessage, getFavorites } from '$lib/utils';
-	import { onMount } from 'svelte';
+	import { getErrorMessage } from '$lib/utils';
 	import type { FilterOptions } from '../../_types/filter-options';
 	import type { SortOptions } from '../../_types/sort-options';
 
@@ -33,7 +32,6 @@
 	});
 	let totalEntries = $derived(data?.searchResponse.total);
 	let totalPages = $derived(totalEntries ? totalEntries / ITEMS_PER_PAGE : undefined);
-	let favorites = $state<string[]>();
 	let errorMessage = $state('');
 
 	$effect(() => {
@@ -45,10 +43,6 @@
 			};
 			loadData({ from: 0 });
 		}
-	});
-
-	onMount(() => {
-		favorites = getFavorites();
 	});
 
 	async function loadData(params: { from: number }) {
@@ -63,7 +57,7 @@
 				sort: `${sortOptions.prop}:${sortOptions.desc ? 'desc' : 'asc'}`
 			});
 			const dogs = await apiClient.dogs.get({ ids: searchResponse.resultIds });
-			const locations = await apiClient.locations.getLocations({
+			const locations = await apiClient.locations.get({
 				zipCodes: dogs.map((dog) => dog.zip_code)
 			});
 			data = {

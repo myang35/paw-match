@@ -1,5 +1,5 @@
-import { getLocations } from './get-locations/get-locations';
+import { get } from './get/get';
 
 export const locations = {
-	getLocations
+	get
 };

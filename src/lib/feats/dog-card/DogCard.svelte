@@ -1,14 +1,22 @@
 <script lang="ts">
 	import type { Dog } from '$lib/api/types/dog';
 	import type { Location } from '$lib/api/types/location';
-	import { isFavorited, toggleFavorite } from '$lib/utils';
+	import { favorites, initializeFavorites } from '$lib/utils';
 	import { faHeart } from '@fortawesome/free-solid-svg-icons';
+	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa';
 
 	type Props = { dog: Dog; location: Location; hideFavoriteButton?: boolean };
 
 	let { dog, location, hideFavoriteButton = false }: Props = $props();
-	let favorited = $state(isFavorited(dog.id));
+	let favorited = $state($favorites.includes(dog.id));
+
+	onMount(() => {
+		initializeFavorites();
+		favorites.subscribe((value) => {
+			favorited = value.includes(dog.id);
+		});
+	});
 </script>
 
 <div
@@ -33,10 +41,7 @@
 
 		{#if !hideFavoriteButton}
 			<button
-				onclick={() => {
-					toggleFavorite(dog.id);
-					favorited = !favorited;
-				}}
+				onclick={() => favorites.toggle(dog.id)}
 				class={[
 					'text-light-100 size-12 rounded-full text-3xl transition',
 					favorited && 'text-primary-100 bg-secondary-500'
