@@ -1,14 +1,11 @@
 <script lang="ts">
+	import SortSection from './sort-section/SortSection.svelte';
+
+	import FilterSection from './filter-section/FilterSection.svelte';
+
 	import { base } from '$app/paths';
-	import { Anchor, Button } from '$lib/ui';
-	import {
-		faArrowDown,
-		faArrowUp,
-		faGreaterThan,
-		faLessThan,
-		faPen,
-		faX
-	} from '@fortawesome/free-solid-svg-icons';
+	import { Anchor } from '$lib/ui';
+	import { faGreaterThan, faLessThan } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { FilterOptions } from '../../_types/filter-options';
 	import type { SortOptions } from '../../_types/sort-options';
@@ -35,53 +32,8 @@
 		</Anchor>
 	</div>
 	<div class="flex justify-center gap-8">
-		<div>
-			<h1 class="font-bold">Filters:</h1>
-			{#if filterOptions.breeds.length > 0}
-				<div>
-					<p class="max-w-40 truncate">Breeds:</p>
-					<ul>
-						{#each filterOptions.breeds as breed}
-							<li class="flex items-center gap-1 pl-4">
-								<span>- {breed}</span>
-								<button class="rounded px-2 text-red-900"><Fa icon={faX} /></button>
-							</li>
-						{/each}
-					</ul>
-				</div>
-			{/if}
-			{#if filterOptions.age.min || filterOptions.age.max}
-				<div class="flex items-center gap-1">
-					<p class="max-w-40 truncate">
-						{#if filterOptions.age.min === filterOptions.age.max}
-							Age = {filterOptions.age.min}
-						{:else if !filterOptions.age.min}
-							Age &lt; {filterOptions.age.max}
-						{:else if !filterOptions.age.max}
-							Age &gt; {filterOptions.age.min}
-						{:else}
-							Age: {filterOptions.age.min} &lt; {filterOptions.age.max}
-						{/if}
-					</p>
-					<Button class="rounded p-2 text-red-900"><Fa icon={faX} /></Button>
-				</div>
-			{/if}
-			<Button
-				color="light"
-				onclick={onFilterClick}
-				class="flex items-center gap-2 rounded px-2 py-1"
-			>
-				<span>Update Filter</span>
-				<Fa icon={faPen} class="inline" />
-			</Button>
-		</div>
-		<div>
-			<h1 class="font-bold">Sort By:</h1>
-			<Button color="light" onclick={onSortClick} class="rounded px-2 py-1">
-				<span>{sortOptions.prop}</span>
-				<Fa icon={sortOptions.desc ? faArrowDown : faArrowUp} class="inline" />
-			</Button>
-		</div>
+		<FilterSection {filterOptions} {onFilterClick} />
+		<SortSection {sortOptions} {onSortClick} />
 	</div>
 	<div class="flex items-center">
 		<Anchor
