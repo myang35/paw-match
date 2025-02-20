@@ -39,14 +39,18 @@
 </script>
 
 <fieldset class="border-secondary-900 rounded border p-4">
-	<legend class="text-secondary-900 font-bold">Breed:</legend>
+	<legend class="text-secondary-900 font-bold">Breeds:</legend>
 
 	{#if errorMessage}
 		<p class="rounded bg-red-500/25 px-2 py-1 text-red-900">{errorMessage}</p>
 	{/if}
 
 	<Combobox bind:selectedList>
-		<ComboboxInput bind:value={breedsInputValue} class="rounded-b-none" />
+		<ComboboxInput
+			bind:value={breedsInputValue}
+			placeholder="Select breeds"
+			class="rounded-b-none"
+		/>
 		{#snippet content()}
 			<ComboboxContent>
 				{#each filteredBreeds as breed}
@@ -56,11 +60,11 @@
 		{/snippet}
 	</Combobox>
 
-	<ul
-		class="border-dark-500 bg-secondary-500/25 h-20 max-h-80 resize-y overflow-y-auto rounded-b border p-2"
-	>
-		{#each selectedList ?? [] as selectedItem}
-			<li class="ml-5 list-disc">{selectedItem.label}</li>
-		{/each}
-	</ul>
+	{#if selectedList.length > 0}
+		<ul class="border-dark-100 h-20 max-h-80 resize-y overflow-y-auto rounded-b border p-2">
+			{#each selectedList as selectedItem}
+				<li class="ml-5 list-disc">{selectedItem.label}</li>
+			{/each}
+		</ul>
+	{/if}
 </fieldset>
