@@ -13,23 +13,22 @@
 	let locations = $state<Location[]>();
 	let errorMessage = $state('');
 
-	onMount(() => {
+	onMount(async () => {
 		initializeFavorites();
-		favorites.subscribe(async (value) => {
-			try {
-				dogs = await (async () => {
-					const response = await apiClient.dogs.get({ ids: value });
-					return response.toSorted((a, b) => {
-						if (a.name > b.name) return 1;
-						if (a.name < b.name) return -1;
-						return 0;
-					});
-				})();
-				locations = await apiClient.locations.get({ zipCodes: dogs.map((dog) => dog.zip_code) });
-			} catch (error) {
-				errorMessage = getErrorMessage(error);
-			}
-		});
+
+		try {
+			dogs = await (async () => {
+				const response = await apiClient.dogs.get({ ids: $favorites });
+				return response.toSorted((a, b) => {
+					if (a.name > b.name) return 1;
+					if (a.name < b.name) return -1;
+					return 0;
+				});
+			})();
+			locations = await apiClient.locations.get({ zipCodes: dogs.map((dog) => dog.zip_code) });
+		} catch (error) {
+			errorMessage = getErrorMessage(error);
+		}
 	});
 
 	async function onMatchClick() {
