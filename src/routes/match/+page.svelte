@@ -2,6 +2,7 @@
 	import { base } from '$app/paths';
 	import { apiClient } from '$lib/api';
 	import type { Dog } from '$lib/api/types/dog';
+	import type { Location } from '$lib/api/types/location';
 	import { DogCard } from '$lib/feats';
 	import { Anchor } from '$lib/ui';
 	import { onMount } from 'svelte';
@@ -10,22 +11,22 @@
 	let { data }: { data: PageData } = $props();
 
 	let dog = $state<Dog>();
+	let location = $state<Location>();
 	let errorMessage = $state('');
 
-	onMount(() => {
+	onMount(async () => {
 		if (data.dogId) {
-			apiClient.dogs.get({ ids: [data.dogId] }).then((res) => {
-				dog = res[0];
-			});
+			dog = (await apiClient.dogs.get({ ids: [data.dogId] }))[0];
+			location = (await apiClient.locations.get({ zipCodes: [dog.zip_code] }))[0];
 		}
 	});
 </script>
 
 <div>
-	{#if dog}
+	{#if dog && location}
 		<div class="flex flex-col items-center gap-8 p-8">
 			<h1 class="text-5xl font-bold">You have been matched!</h1>
-			<DogCard {dog} hideFavoriteButton />
+			<DogCard {dog} {location} hideFavoriteButton />
 			<p class="text-center text-xl">
 				Thank you for opening your heart and home to a shelter dog in need. Your choice to adopt not
 				only changes their life forever but also makes room for another animal in need of care and

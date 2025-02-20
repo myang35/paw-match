@@ -9,7 +9,7 @@
 	type Props = { dog: Dog; location: Location; hideFavoriteButton?: boolean };
 
 	let { dog, location, hideFavoriteButton = false }: Props = $props();
-	let favorited = $state($favorites.includes(dog.id));
+	let favorited = $state(false);
 
 	onMount(() => {
 		initializeFavorites();
