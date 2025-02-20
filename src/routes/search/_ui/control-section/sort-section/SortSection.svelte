@@ -9,7 +9,7 @@
 		onSortClick?: (e: MouseEvent) => void;
 	};
 
-	let { sortOptions, onSortClick }: Props = $props();
+	let { sortOptions = $bindable(), onSortClick }: Props = $props();
 </script>
 
 <div>

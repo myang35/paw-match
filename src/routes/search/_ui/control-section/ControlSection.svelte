@@ -17,7 +17,12 @@
 		onSortClick?: (e: MouseEvent) => void;
 	};
 
-	let { filterOptions, sortOptions, onFilterClick, onSortClick }: Props = $props();
+	let {
+		filterOptions = $bindable(),
+		sortOptions = $bindable(),
+		onFilterClick,
+		onSortClick
+	}: Props = $props();
 </script>
 
 <section class="bg-secondary-500/50 border-secondary-500 flex justify-between gap-8 border-b-4 p-4">
@@ -32,8 +37,8 @@
 		</Anchor>
 	</div>
 	<div class="flex justify-center gap-8">
-		<FilterSection {filterOptions} {onFilterClick} />
-		<SortSection {sortOptions} {onSortClick} />
+		<FilterSection bind:filterOptions {onFilterClick} />
+		<SortSection bind:sortOptions {onSortClick} />
 	</div>
 	<div class="flex items-center">
 		<Anchor

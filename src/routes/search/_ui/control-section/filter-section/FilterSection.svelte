@@ -9,7 +9,7 @@
 		onFilterClick?: (e: MouseEvent) => void;
 	};
 
-	let { filterOptions, onFilterClick }: Props = $props();
+	let { filterOptions = $bindable(), onFilterClick }: Props = $props();
 </script>
 
 <div>

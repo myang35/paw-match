@@ -20,8 +20,8 @@
 
 <div>
 	<ControlSection
-		{filterOptions}
-		{sortOptions}
+		bind:filterOptions
+		bind:sortOptions
 		onFilterClick={() => (filterModalOpened = true)}
 		onSortClick={() => (sortModalOpened = true)}
 	/>
