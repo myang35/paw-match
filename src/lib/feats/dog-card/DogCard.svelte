@@ -38,8 +38,8 @@
 					favorited = !favorited;
 				}}
 				class={[
-					'text-light-100 size-12 text-3xl',
-					favorited && 'text-primary-100 bg-secondary-500 rounded-full'
+					'text-light-100 size-12 rounded-full text-3xl transition',
+					favorited && 'text-primary-100 bg-secondary-500'
 				]}
 			>
 				<Fa icon={faHeart} class="m-auto" />
