@@ -11,7 +11,7 @@
 	let { data }: { data: PageData } = $props();
 
 	let dog = $state<Dog>();
-	let location = $state<Location>();
+	let location = $state<Location | null>();
 	let errorMessage = $state('');
 
 	onMount(async () => {

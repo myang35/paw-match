@@ -10,7 +10,7 @@
 	import { onMount } from 'svelte';
 
 	let dogs = $state<Dog[]>();
-	let locations = $state<Location[]>();
+	let locations = $state<(Location | null)[]>();
 	let errorMessage = $state('');
 
 	onMount(async () => {

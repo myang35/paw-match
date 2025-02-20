@@ -6,7 +6,7 @@
 	import { onMount } from 'svelte';
 	import Fa from 'svelte-fa';
 
-	type Props = { dog: Dog; location: Location; hideFavoriteButton?: boolean };
+	type Props = { dog: Dog; location: Location | null; hideFavoriteButton?: boolean };
 
 	let { dog, location, hideFavoriteButton = false }: Props = $props();
 	let favorited = $state(false);
@@ -32,11 +32,13 @@
 				<span>{dog.breed},</span>
 				<span class="text-light-700 text-sm">{dog.age} months</span>
 			</p>
-			<p>
-				{location.city},
-				{location.state}
-				{location.zip_code}
-			</p>
+			{#if location}
+				<p>
+					{location?.city},
+					{location?.state}
+					{location?.zip_code}
+				</p>
+			{/if}
 		</div>
 
 		{#if !hideFavoriteButton}

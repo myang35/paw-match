@@ -19,7 +19,7 @@
 	let data = $state<{
 		searchResponse: DogsSearchResponse;
 		dogs: Dog[];
-		locations: Location[];
+		locations: (Location | null)[];
 	}>();
 	let paginationState = $state<{
 		page: number;
