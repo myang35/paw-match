@@ -1,38 +1,31 @@
-# sv
+# PawMatch
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Get Started
 
-## Creating a project
+### Prerequisite:
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Node version >= 22.14.0
+
+### 1. Install
 
 ```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
+git clone https://github.com/myang35/paw-match.git
+cd paw-match
+npm install
 ```
 
-## Developing
+### 2. Run proxy server
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+This is only needed in development to allow cookies to be accepted without https.
+
+```bash
+npm run proxy
+```
+
+## 3. Run development server
+
+In another terminal, run the development server.
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
