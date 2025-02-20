@@ -3,6 +3,7 @@
 	import type { Dog } from '$lib/api/types/dog';
 	import { Pagination } from '$lib/ui';
 	import { getErrorMessage } from '$lib/utils';
+	import { onMount } from 'svelte';
 	import type { FilterOptions } from '../../_types/filter-options';
 	import type { SortOptions } from '../../_types/sort-options';
 	import DogCard from './dog-card/DogCard.svelte';
@@ -30,6 +31,7 @@
 	});
 	let totalEntries = $derived(data?.searchResponse.total);
 	let totalPages = $derived(totalEntries ? totalEntries / ITEMS_PER_PAGE : undefined);
+	let favoritedList = $state<string[]>();
 	let errorMessage = $state('');
 
 	$effect(() => {
@@ -41,6 +43,20 @@
 			};
 			loadData({ from: 0 });
 		}
+	});
+
+	onMount(() => {
+		favoritedList = (() => {
+			const stored = localStorage.getItem('favoritedList');
+			if (!stored) return [];
+			try {
+				const parsed = JSON.parse(stored);
+				if (!(parsed instanceof Array)) return [];
+				return parsed.filter((item) => typeof item === 'string');
+			} catch (error) {
+				return [];
+			}
+		})();
 	});
 
 	async function loadData(params: { from: number }) {
@@ -64,6 +80,20 @@
 		}
 	}
 
+	function updateFavoritedList(dogId: string) {
+		if (!favoritedList) {
+			favoritedList = [dogId];
+		} else {
+			const favoritedIndex = favoritedList.findIndex((value) => value === dogId);
+			if (favoritedIndex === -1) {
+				favoritedList.push(dogId);
+			} else {
+				favoritedList.splice(favoritedIndex, 1);
+			}
+		}
+		localStorage.setItem('favoritedList', JSON.stringify(favoritedList));
+	}
+
 	async function onPageChange(params: { page: number; start: number; end: number }) {
 		paginationState = params;
 		loadData({ from: params.start });
@@ -81,7 +111,11 @@
 			{/if}
 			<div class="mx-auto flex max-w-7xl flex-wrap justify-center gap-6">
 				{#each data.dogs as dog}
-					<DogCard {dog} />
+					<DogCard
+						{dog}
+						favorited={favoritedList?.includes(dog.id)}
+						onClick={() => updateFavoritedList(dog.id)}
+					/>
 				{/each}
 			</div>
 			<div class="mx-auto w-fit">
