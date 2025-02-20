@@ -5,9 +5,11 @@
 	import type { Dog } from '$lib/api/types/dog';
 	import type { Location } from '$lib/api/types/location';
 	import { DogCard } from '$lib/feats';
-	import { Button } from '$lib/ui';
+	import { Anchor, Button } from '$lib/ui';
 	import { favorites, getErrorMessage, initializeFavorites } from '$lib/utils';
+	import { faLessThan } from '@fortawesome/free-solid-svg-icons';
 	import { onMount } from 'svelte';
+	import Fa from 'svelte-fa';
 
 	let dogs = $state<Dog[]>();
 	let locations = $state<(Location | null)[]>();
@@ -40,7 +42,13 @@
 </script>
 
 <div class="space-y-20 p-4">
-	<h1 class="text-center text-5xl font-bold">Review Your List</h1>
+	<div>
+		<Anchor href="{base}/search" class="flex w-fit items-center gap-2 rounded px-2 py-1">
+			<Fa icon={faLessThan} />
+			<span>Find Dogs</span>
+		</Anchor>
+		<h1 class="text-center text-5xl font-bold">Review Your List</h1>
+	</div>
 
 	{#if dogs && locations}
 		{#if dogs.length > 0}
