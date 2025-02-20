@@ -21,7 +21,13 @@
 				{#each filterOptions.breeds as breed}
 					<li class="flex items-center gap-1 pl-4">
 						<span>- {breed}</span>
-						<button class="rounded px-2 text-red-900"><Fa icon={faX} /></button>
+						<button
+							onclick={() => {
+								const index = filterOptions.breeds.indexOf(breed);
+								filterOptions.breeds.splice(index, 1);
+							}}
+							class="rounded px-2 text-red-900"><Fa icon={faX} /></button
+						>
 					</li>
 				{/each}
 			</ul>
@@ -40,7 +46,9 @@
 					Age: {filterOptions.age.min} &lt; {filterOptions.age.max}
 				{/if}
 			</p>
-			<Button class="rounded p-2 text-red-900"><Fa icon={faX} /></Button>
+			<button onclick={() => (filterOptions.age = {})} class="rounded px-2 text-red-900"
+				><Fa icon={faX} /></button
+			>
 		</div>
 	{/if}
 	<Button color="light" onclick={onFilterClick} class="flex items-center gap-2 rounded px-2 py-1">

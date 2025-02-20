@@ -82,7 +82,7 @@
 			{#if paginationState}
 				<p class="text-center">
 					Page {paginationState.page} of {totalPages}, Showing {paginationState.start} - {paginationState.end}
-					of {totalEntries} entries
+					of {totalEntries} results
 				</p>
 			{/if}
 			<div class="mx-auto flex max-w-7xl flex-wrap justify-center gap-6">
