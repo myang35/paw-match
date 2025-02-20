@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { Button } from '$lib/ui';
+	import { fade } from 'svelte/transition';
 	import type { FilterOptions } from '../../_types/filter-options';
 	import AgeFieldset from './age-fieldset/AgeFieldset.svelte';
 	import BreedFieldset from './breed-fieldset/BreedFieldset.svelte';
@@ -43,7 +44,7 @@
 	}
 </script>
 
-<div class="fixed inset-0 m-auto bg-black/25">
+<div transition:fade={{ duration: 100 }} class="fixed inset-0 m-auto bg-black/25">
 	<div
 		class="bg-light-500 absolute inset-0 m-auto size-fit max-h-screen overflow-y-auto rounded-lg p-8"
 	>

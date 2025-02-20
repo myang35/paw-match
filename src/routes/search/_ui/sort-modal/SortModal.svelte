@@ -2,6 +2,7 @@
 	import { Button, RadioGroup, RadioGroupButton } from '$lib/ui';
 	import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
+	import { fade } from 'svelte/transition';
 	import type { SortOptions } from '../../_types/sort-options';
 
 	type Props = {
@@ -24,7 +25,7 @@
 	}
 </script>
 
-<div class="fixed inset-0 m-auto bg-black/25">
+<div transition:fade={{ duration: 100 }} class="fixed inset-0 m-auto bg-black/25">
 	<div
 		class="bg-light-500 absolute inset-0 m-auto size-fit max-h-screen overflow-y-auto rounded-lg p-8"
 	>
