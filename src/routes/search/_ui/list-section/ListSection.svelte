@@ -128,8 +128,8 @@
 			</div>
 		</div>
 	{:else if errorMessage}
-		<p>{errorMessage}</p>
+		<p class="p-4">{errorMessage}</p>
 	{:else}
-		<p>Fetching...</p>
+		<p class="p-4">Fetching...</p>
 	{/if}
 </section>

@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Button } from '$lib/ui';
+	import { base } from '$app/paths';
+	import { Anchor, Button } from '$lib/ui';
 	import { faArrowDown, faArrowUp, faPen, faX } from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { FilterOptions } from '../../_types/filter-options';
@@ -15,23 +16,24 @@
 	let { filterOptions, sortOptions, onFilterClick, onSortClick }: Props = $props();
 </script>
 
-<section class="bg-secondary-500/50 border-secondary-500 border-b-4 p-4">
+<section class="bg-secondary-500/50 border-secondary-500 flex justify-between border-b-4 p-4">
+	<div class="flex items-center">
+		<Anchor href="{base}/login" color="light" class="rounded p-2">Update Profile</Anchor>
+	</div>
 	<div class="flex justify-center gap-20">
 		<div>
 			<h1 class="font-bold">Filters:</h1>
 			{#if filterOptions.breeds.length > 0}
 				<div>
-					<div>
-						<p class="max-w-40 truncate">Breeds:</p>
-						<ul>
-							{#each filterOptions.breeds as breed}
-								<li class="flex items-center gap-1 pl-4">
-									<span>- {breed}</span>
-									<button class="rounded px-2 text-red-900"><Fa icon={faX} /></button>
-								</li>
-							{/each}
-						</ul>
-					</div>
+					<p class="max-w-40 truncate">Breeds:</p>
+					<ul>
+						{#each filterOptions.breeds as breed}
+							<li class="flex items-center gap-1 pl-4">
+								<span>- {breed}</span>
+								<button class="rounded px-2 text-red-900"><Fa icon={faX} /></button>
+							</li>
+						{/each}
+					</ul>
 				</div>
 			{/if}
 			{#if filterOptions.age.min || filterOptions.age.max}
@@ -66,5 +68,8 @@
 				<Fa icon={sortOptions.desc ? faArrowDown : faArrowUp} class="inline" />
 			</Button>
 		</div>
+	</div>
+	<div class="flex items-center">
+		<Anchor href="{base}/favorited" color="light" class="rounded p-2">View Favorited List</Anchor>
 	</div>
 </section>
