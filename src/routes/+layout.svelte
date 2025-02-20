@@ -8,7 +8,7 @@
 </script>
 
 <div class="flex min-h-screen flex-col">
-	<navbar class="bg-light-500 flex items-center justify-between px-8 py-1">
+	<navbar class="bg-light-500 flex items-center justify-between px-8 py-1 shadow shadow-black/25">
 		<a href="{base}/" class="flex items-center gap-2">
 			<h1 class="text-3xl font-bold">PawMatch</h1>
 			<img src={logo} alt="Logo" class="size-6" />
