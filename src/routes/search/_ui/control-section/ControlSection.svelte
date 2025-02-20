@@ -1,7 +1,14 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	import { Anchor, Button } from '$lib/ui';
-	import { faArrowDown, faArrowUp, faPen, faX } from '@fortawesome/free-solid-svg-icons';
+	import {
+		faArrowDown,
+		faArrowUp,
+		faGreaterThan,
+		faLessThan,
+		faPen,
+		faX
+	} from '@fortawesome/free-solid-svg-icons';
 	import Fa from 'svelte-fa';
 	import type { FilterOptions } from '../../_types/filter-options';
 	import type { SortOptions } from '../../_types/sort-options';
@@ -16,11 +23,18 @@
 	let { filterOptions, sortOptions, onFilterClick, onSortClick }: Props = $props();
 </script>
 
-<section class="bg-secondary-500/50 border-secondary-500 flex justify-between border-b-4 p-4">
+<section class="bg-secondary-500/50 border-secondary-500 flex justify-between gap-8 border-b-4 p-4">
 	<div class="flex items-center">
-		<Anchor href="{base}/login" color="light" class="rounded p-2">Update Profile</Anchor>
+		<Anchor
+			href="{base}/login"
+			color="transparent"
+			class="flex items-center gap-2 rounded p-2 text-lg"
+		>
+			<Fa icon={faLessThan} />
+			<span>Update Profile</span>
+		</Anchor>
 	</div>
-	<div class="flex justify-center gap-20">
+	<div class="flex justify-center gap-8">
 		<div>
 			<h1 class="font-bold">Filters:</h1>
 			{#if filterOptions.breeds.length > 0}
@@ -70,6 +84,13 @@
 		</div>
 	</div>
 	<div class="flex items-center">
-		<Anchor href="{base}/favorited" color="light" class="rounded p-2">View Favorited List</Anchor>
+		<Anchor
+			href="{base}/favorites"
+			color="transparent"
+			class="flex items-center gap-2 rounded p-2 text-lg"
+		>
+			<span>View Favorites</span>
+			<Fa icon={faGreaterThan} />
+		</Anchor>
 	</div>
 </section>
