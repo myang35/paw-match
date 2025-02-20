@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { apiClient, type DogsSearchResponse } from '$lib/api';
 	import type { Dog } from '$lib/api/types/dog';
+	import type { Location } from '$lib/api/types/location';
 	import { DogCard } from '$lib/feats';
 	import { Pagination } from '$lib/ui';
 	import { getErrorMessage, getFavorites } from '$lib/utils';
@@ -19,6 +20,7 @@
 	let data = $state<{
 		searchResponse: DogsSearchResponse;
 		dogs: Dog[];
+		locations: Location[];
 	}>();
 	let paginationState = $state<{
 		page: number;
@@ -61,9 +63,13 @@
 				sort: `${sortOptions.prop}:${sortOptions.desc ? 'desc' : 'asc'}`
 			});
 			const dogs = await apiClient.dogs.get({ ids: searchResponse.resultIds });
+			const locations = await apiClient.locations.getLocations({
+				zipCodes: dogs.map((dog) => dog.zip_code)
+			});
 			data = {
 				searchResponse,
-				dogs
+				dogs,
+				locations
 			};
 		} catch (error) {
 			errorMessage = getErrorMessage(error);
@@ -86,8 +92,8 @@
 				</p>
 			{/if}
 			<div class="mx-auto flex max-w-7xl flex-wrap justify-center gap-6">
-				{#each data.dogs as dog}
-					<DogCard {dog} />
+				{#each data.dogs as dog, i}
+					<DogCard {dog} location={data.locations[i]} />
 				{/each}
 			</div>
 			<div class="mx-auto w-fit">
